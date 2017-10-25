@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record model="ir.model.access" id="access_line_attribute_category">
+    <field name="name">Global</field>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="model_id" ref="sh_line_attribute.model_line_attribute_category"/>
+  </record>
+  <record model="ir.model.access" id="access_line_attribute_line">
+    <field name="name">Global</field>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="model_id" ref="sh_line_attribute.model_line_attribute_line"/>
+  </record>
+  <record model="ir.model.access" id="access_line_attribute">
+    <field name="name">Global</field>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="model_id" ref="sh_line_attribute.model_line_attribute"/>
+  </record>
+</odoo>
