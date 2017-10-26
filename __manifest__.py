@@ -12,7 +12,7 @@ THIS MODULE IS PROVIDED AS IS - INSTALLATION AT USERS' OWN RISK - AUTHOR OF MODU
 RESPONSIBILITY FOR ANY BEHAVIOR ONCE INSTALLED.
         """,
 
-    'depends':['base','sale'],
+    'depends':['base','sale','account'],
     'data':[
             'data/ir_ui_views.xml',
             'data/ir_model_access.xml',

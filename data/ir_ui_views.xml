@@ -56,7 +56,21 @@
       <field name="priority">99</field>
       <field name="arch" type="xml">
         <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="after">
-          <button string="Attributes" type="object" name="open_attribute_values"/>
+          <field name="attribute_id" invisible="1"/>
+          <button attrs="{'invisible':[('attribute_id','=',False)]}" icon="fa fa-dot-circle-o" type="object" name="open_attribute_values"/>
+          <button attrs="{'invisible':[('attribute_id','!=',False)]}" icon="fa fa-circle-o" type="object" name="open_attribute_values"/>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="invoice_form_mod">
+      <field name="name">x_gfp.account.invoice.form.mod</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_form"/>
+      <field name="priority">99</field>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='name']" position="after">
+          <field name="attribute_id" invisible="1"/>
+          <button attrs="{'invisible':[('attribute_id','=',False)]}" icon="fa fa-dot-circle-o" type="object" name="open_attribute_values"/>
         </xpath>
       </field>
     </record>

@@ -22,12 +22,10 @@ class SaleOrderLine(models.Model):
                         'categ_id':categ.id,
                         'attribute_id':new_attribute.id,
                         })
-                #attribute_view = new_attribute.id
                 action_data = line.env.ref('sh_line_attribute.action_window_line_attribute').read()[0]
                 action_data.update({'res_id':line.attribute_id.id})
                 return action_data
             else:
                 action_data = line.env.ref('sh_line_attribute.action_window_line_attribute').read()[0]
-                #attribute_form_id = line.env['line.attribute'].search([()'order_line','=',line.id)],limit=1).id
                 action_data.update({'res_id':line.attribute_id.id})
                 return action_data
