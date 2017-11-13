@@ -7,6 +7,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     attribute_id = fields.Many2one('line.attribute', 'Custom Attributes',copy=False, index=True)
+    show_full_circle = fields.Boolean(string='Show Full (Technical)',compute='_show_full_circle', readonly=True,store=False)
 
     @api.multi
     def open_attribute_values(self):
@@ -29,3 +30,10 @@ class SaleOrderLine(models.Model):
                 action_data = line.env.ref('sh_line_attribute.action_window_line_attribute').read()[0]
                 action_data.update({'res_id':line.attribute_id.id})
                 return action_data
+
+    @api.multi
+    def _show_full_circle(self):
+        for line in self:
+            line.show_full_circle = False
+            if any(l.value != False for l in line.attribute_id.attribute_values):
+                line.show_full_circle = True

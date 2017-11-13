@@ -57,8 +57,9 @@
       <field name="arch" type="xml">
         <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="after">
           <field name="attribute_id" invisible="1"/>
-          <button attrs="{'invisible':[('attribute_id','=',False)]}" icon="fa fa-dot-circle-o" type="object" name="open_attribute_values"/>
-          <button attrs="{'invisible':[('attribute_id','!=',False)]}" icon="fa fa-circle-o" type="object" name="open_attribute_values"/>
+          <field name="show_full_circle" invisible="1"/>
+          <button attrs="{'invisible':[('show_full_circle','!=',True)]}" icon="fa fa-dot-circle-o" type="object" name="open_attribute_values"/>
+          <button attrs="{'invisible':[('show_full_circle','=',True)]}" icon="fa fa-circle-o" type="object" name="open_attribute_values"/>
         </xpath>
         <xpath expr="//field[@name='order_line']//form//field[@name='name']" position="after">
           <field name="attribute_id" invisible="1"/>
