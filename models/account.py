@@ -6,7 +6,7 @@ from odoo.exceptions import UserError
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
-    attribute_id = fields.Many2one('line.attribute','Custom Attributes', compute='_compute_attribute', store=False)
+    attribute_id = fields.Many2one('line.attribute','Custom Attributes', compute='_compute_attribute', store=False, )
 
     @api.depends('sale_line_ids','sale_line_ids.attribute_id')
     def _compute_attribute(self):

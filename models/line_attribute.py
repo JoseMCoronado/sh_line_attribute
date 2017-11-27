@@ -18,6 +18,20 @@ class LineAttributeLine(models.Model):
     categ_id = fields.Many2one('line.attribute.category', string="Attribute", required=True)
     value = fields.Char("Attribute Value", ondelete='set null')
 
+    @api.multi
+    @api.constrains('categ_id','value')
+    def rename_description(self):
+        for line in self:
+            parsed_desc = line.attribute_id.order_line.name.split("---")
+            second_package = "---" + '\n'
+            for values in line.attribute_id.attribute_values:
+                second_package += str(values.categ_id.name) + ': ' + str(values.value) + '\n'
+                print str(values.categ_id.name) + ': ' + str(values.value) + '\n'
+            new_desc = str(parsed_desc[0]) + second_package
+            line.attribute_id.order_line.write({'name':new_desc})
+            for inv_line in line.attribute_id.order_line.invoice_lines:
+                inv_line.write({'name':new_desc})
+
 class LineAttribute(models.Model):
     _name = "line.attribute"
     _description = 'Sale Line Attributes'
