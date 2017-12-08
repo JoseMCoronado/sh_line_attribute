@@ -58,7 +58,7 @@
         <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="after">
           <field name="attribute_id" invisible="1"/>
           <field name="show_full_circle" invisible="1"/>
-          <button string="Update" type="object" name="open_attribute_values"/>
+          <button string="Attributes" type="object" name="open_attribute_values"/>
         </xpath>
         <xpath expr="//field[@name='order_line']//form//field[@name='name']" position="after">
           <field name="attribute_id" invisible="1"/>
@@ -73,7 +73,7 @@
       <field name="arch" type="xml">
         <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='name']" position="after">
           <field name="attribute_id" invisible="1"/>
-          <button string="Update" type="object" name="open_attribute_values"/>
+          <button string="Attributes" type="object" name="open_attribute_values"/>
         </xpath>
       </field>
     </record>
