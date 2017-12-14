@@ -16,6 +16,7 @@ RESPONSIBILITY FOR ANY BEHAVIOR ONCE INSTALLED.
     'data':[
             'data/ir_ui_views.xml',
             'data/ir_model_access.xml',
+            'data/ir_ui_menu.xml',
             ],
     'installable': True,
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record model="ir.ui.menu" id="menu_attribute_line_theme">
+    <field name="name">Attribute Themes</field>
+    <field name="action" ref="action_window_line_attribute_theme"/>
+    <field name="parent_id" ref="sale.menu_sales_config"/>
+    <field name="sequence">0</field>
+  </record>
+</odoo>

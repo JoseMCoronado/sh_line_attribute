@@ -7,3 +7,8 @@ class ProductCategory(models.Model):
     _inherit = "product.category"
 
     attribute_categ_ids = fields.Many2many('line.attribute.category', string="Attribute Categories")
+
+class ProductTemplate(models.Model):
+    _inherit = "product.template"
+
+    attribute_theme_ids = fields.Many2many('line.attribute.theme', string="Attribute Themes")
