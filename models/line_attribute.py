@@ -3,6 +3,7 @@
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
+from ast import literal_eval
 
 class LineAttributeCategory(models.Model):
     _name = "line.attribute.category"
@@ -39,7 +40,7 @@ class LineAttribute(models.Model):
     order_line = fields.Many2one('sale.order.line', string="Sale Order Line")
     attribute_values = fields.One2many('line.attribute.line', 'attribute_id', 'Attribute Values')
     theme_id = fields.Many2one('line.attribute.theme', string="Theme")
-    attribute_theme_ids = fields.Many2many('line.attribute.theme', related="order_line.product_id.product_tmpl_id.attribute_theme_ids")
+    render_domain = fields.Boolean(string='Filter Themes (Product/Customer/Category)', store=True, readonly=False)
 
     @api.constrains('theme_id')
     def create_theme_lines(self):
@@ -55,6 +56,22 @@ class LineAttribute(models.Model):
                         'attribute_id':session.id,
                         })
 
+    @api.onchange('render_domain')
+    def apply_domain(self):
+        for session in self:
+            if session.render_domain == False:
+                domain = {'theme_id': []}
+                return {'domain': domain}
+            if session.render_domain == True:
+                themes = []
+                for partner_theme in session.order_line.order_id.partner_id.attribute_theme_ids:
+                    themes.append(partner_theme.id)
+                for category_theme in session.order_line.product_id.product_tmpl_id.categ_id.attribute_theme_ids:
+                    themes.append(category_theme.id)
+                for product_theme in session.order_line.product_id.product_tmpl_id.attribute_theme_ids:
+                    themes.append(product_theme.id)
+                domain = {'theme_id': [('id', 'in', themes)]}
+                return {'domain': domain}
 
 class LineAttributeThemeLine(models.Model):
 

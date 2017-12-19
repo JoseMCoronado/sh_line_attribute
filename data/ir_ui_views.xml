@@ -23,6 +23,7 @@
         <form create="false" string="Attributes">
           <sheet>
             <group>
+              <field name="render_domain"/>
               <field name="order_line" invisible="1"/>
               <i>Select a theme if you would like...</i>
               <field name="theme_id" nolabel="1"/>
@@ -98,6 +99,7 @@
       <field name="arch" type="xml">
         <xpath expr="//group[@name='first']" position="inside">
           <field name="attribute_categ_ids" widget="many2many_tags"/>
+          <field name="attribute_theme_ids" widget="many2many_tags"/>
         </xpath>
       </field>
     </record>
@@ -137,6 +139,17 @@
       <field name="arch" type="xml">
         <xpath expr="//field[@name='categ_id']" position="after">
           <field name="attribute_categ_ids" widget="many2many_tags"/>
+          <field name="attribute_theme_ids" widget="many2many_tags"/>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="res_partner_form_view_mod">
+      <field name="name">x_gfp.res.partner.form.mod</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="priority">99</field>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']" position="after">
           <field name="attribute_theme_ids" widget="many2many_tags"/>
         </xpath>
       </field>

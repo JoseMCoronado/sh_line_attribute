@@ -28,10 +28,12 @@ class SaleOrderLine(models.Model):
                         })
                 action_data = line.env.ref('sh_line_attribute.action_window_line_attribute').read()[0]
                 action_data.update({'res_id':line.attribute_id.id})
+                line.attribute_id.render_domain = False
                 return action_data
             else:
                 action_data = line.env.ref('sh_line_attribute.action_window_line_attribute').read()[0]
                 action_data.update({'res_id':line.attribute_id.id})
+                line.attribute_id.render_domain = False
                 return action_data
 
     @api.multi
