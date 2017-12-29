@@ -16,6 +16,7 @@ class SaleOrderLine(models.Model):
             if not line.attribute_id:
                 new_attribute = line.env['line.attribute'].create({'order_line':line.id})
                 line.attribute_id = new_attribute
+                attribute_categories = None
                 if line.product_id.product_tmpl_id.attribute_categ_ids:
                     attribute_categories = line.product_id.product_tmpl_id.attribute_categ_ids
                 elif line.product_id.product_tmpl_id.categ_id.attribute_categ_ids:
