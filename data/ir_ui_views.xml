@@ -138,7 +138,6 @@
       <field name="priority">99</field>
       <field name="arch" type="xml">
         <xpath expr="//field[@name='categ_id']" position="after">
-          <field name="attribute_categ_ids" widget="many2many_tags"/>
           <field name="attribute_theme_ids" widget="many2many_tags"/>
         </xpath>
       </field>
