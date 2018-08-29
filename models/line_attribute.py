@@ -74,9 +74,11 @@ class LineAttribute(models.Model):
                 return {'domain': domain}
 
 class LineAttributeThemeLine(models.Model):
-
     _name = "line.attribute.theme.line"
     _description = 'Sale Line Attribute Theme Line'
+    _order = 'sequence asc'
+
+    sequence = fields.Integer('Sequence', default=10, help="Used to order lines. Lower is better.")
     attribute_id = fields.Many2one('line.attribute.theme', string="Attribute")
     categ_id = fields.Many2one('line.attribute.category', string="Attribute")
     value = fields.Char("Attribute Value")
@@ -85,5 +87,5 @@ class LineAttributeTheme(models.Model):
     _name = "line.attribute.theme"
     _description = 'Sale Line Attributes Theme'
 
-    name = fields.Char(string="Theme Name")
-    attribute_values = fields.One2many('line.attribute.theme.line', 'attribute_id', 'Attribute Values')
+    name = fields.Char(string="Theme Name",copy=True)
+    attribute_values = fields.One2many('line.attribute.theme.line', 'attribute_id', 'Attribute Values',copy=True)

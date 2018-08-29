@@ -73,7 +73,7 @@
       <field name="type">form</field>
       <field name="mode">primary</field>
       <field name="arch" type="xml">
-        <form create="false" string="Attribute Themes">
+        <form string="Attribute Themes">
           <sheet>
             <group>
               <field name="name"/>
@@ -81,6 +81,7 @@
             <group>
               <field name="attribute_values" nolabel="1" context="{'default_attribute_id':active_id}">
                 <tree editable="bottom">
+                  <field name="sequence" widget="handle"/>
                   <field name="attribute_id" invisible="1"/>
                   <field name="categ_id"/>
                   <field name="value"/>
